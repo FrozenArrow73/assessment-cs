@@ -1,0 +1,64 @@
+            First Run
+
+Results for the extraLargeArray
+insert 552.6526 ms
+append 2.2747 ms
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            Second Run
+
+Results for the tinyArray
+insert 4.3 μs
+append 8.2 μs
+------------------------------------
+Results for the smallArray
+insert 7 μs
+append 4 μs
+------------------------------------
+Results for the mediumArray
+insert 89 μs
+append 25.1 μs
+------------------------------------
+Results for the largeArray
+insert 4.9589 ms
+append 124.9 μs
+------------------------------------
+Results for the extraLargeArray
+insert 603.9489 ms
+append 2.5461 ms
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            Table
+Array               Size        insert          Append
+tinyArray           10          4.3 μs          8.2 μs
+smallArray          100         7 μs            4 μs
+mediumArray         1000        89 μs           25.1 μs
+largeArray          10000       4.9589 ms       124.9 μs
+extraLargeArray     100000      603.9489 ms     2.5461 ms
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            Analysis
+
+at an array length of 100 or less the two functions seem to behave
+equaly then begining at a length of 100 append starts to run much faster
+the difference between the two contine to grow as the length increases,
+with append runing the fastest when handleing large arrays.
+
+How does each function “scale”?
+    append scales linearly
+    insert scales exponentially
+
+Which of the two functions scales better?
+    the append function scales the best and runs the fastest with very large arrays
+
+How can you tell?
+    one method would be to to these tests and physically mesure the speed.
+    which in this case shows that for very large arrays append runs faster in practice
+
+For extra credit, do some review / research on why the slower function is so slow, and summarize the reasoning for this.
+
+    the slower function uses the .unshift function which takes more opperations to run than
+    .push.  The function .unshift needs to effectivly loop over the entire array and reassign index
+    values for each value of the array. THis makes the function it's used in run at O(n^2) while
+    the function that .push is used in runs at O(n)
+
